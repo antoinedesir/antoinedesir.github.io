@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antoine Désir</title>
+<meta name="description" content="Antoine Désir — Associate Professor of Technology and Operations Management at INSEAD. Choice modeling, revenue management, and machine learning for operations.">
+<link rel="canonical" href="https://antoinedesir.com/">
+
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://antoinedesir.com/">
+<meta property="og:title" content="Antoine Désir">
+<meta property="og:description" content="Antoine Désir — Associate Professor of Technology and Operations Management at INSEAD. Choice modeling, revenue management, and machine learning for operations.">
+<meta property="og:image" content="https://antoinedesir.com/headshot.jpg">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="INSEAD.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap">
+<style>
+:root {
+  color-scheme: light;
+
+  --bg:        #fcfdfc;
+  --surface:   #eef1ef;
+  --ink:       #141816;
+  --ink-2:     #555f5a;
+  --ink-3:     #869089;
+  --rule:      #e1e7e3;
+  --accent:    #00614a;
+  --accent-bg: #e7f0ec;
+
+  --icon-moon: block;
+  --icon-sun:  none;
+
+  --serif: "Newsreader", Charter, "Iowan Old Style", Georgia, serif;
+  --sans:  "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:  "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --gutter: 7.5rem;
+  --gap:    2.75rem;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg:        #0f1211;
+  --surface:   #191e1c;
+  --ink:       #e6eae8;
+  --ink-2:     #9aa5a0;
+  --ink-3:     #6e7873;
+  --rule:      #262d2a;
+  --accent:    #5cb795;
+  --accent-bg: #15251f;
+  --icon-moon: none;
+  --icon-sun:  block;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15.5px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.page {
+  position: relative;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 5vw, 3rem) 5rem;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  transition: border-color .15s ease, color .15s ease;
+}
+a:hover { border-bottom-color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+/* ---------- theme toggle ---------- */
+
+.theme-toggle {
+  position: absolute;
+  top: clamp(1.5rem, 4vw, 2.5rem);
+  right: clamp(1.25rem, 5vw, 3rem);
+  width: 2.1rem;
+  height: 2.1rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: color .15s ease, border-color .15s ease;
+}
+.theme-toggle:hover { color: var(--ink); border-color: var(--ink-3); }
+.theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.theme-toggle svg { width: 1rem; height: 1rem; display: block; }
+.i-moon { display: var(--icon-moon); }
+.i-sun  { display: var(--icon-sun); }
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  display: grid;
+  grid-template-columns: var(--gutter) 1fr;
+  gap: 0 var(--gap);
+  align-items: start;
+  padding-bottom: 2.75rem;
+}
+
+.portrait {
+  width: 100%;
+  aspect-ratio: 1 / 1.1;
+  object-fit: cover;
+  object-position: 50% 22%;
+  border-radius: 2px;
+  background: var(--surface);
+}
+
+.masthead h1 {
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: clamp(2.35rem, 6vw, 3.15rem);
+  line-height: 1.02;
+  letter-spacing: -0.018em;
+  margin: -0.14em 0 0.6rem;
+  text-wrap: balance;
+}
+
+.role { margin: 0; color: var(--ink-2); line-height: 1.5; }
+.role .chair {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05em;
+  color: var(--ink);
+  margin-bottom: .18rem;
+}
+.logo { width: 1.1rem; height: 1.1rem; vertical-align: -0.2em; margin-right: .3rem; }
+
+.links {
+  display: flex; flex-wrap: wrap; gap: .4rem 1.35rem;
+  margin-top: 1.4rem;
+  font-family: var(--mono); font-size: .78rem;
+}
+
+.nav {
+  display: flex; flex-wrap: wrap; gap: .35rem 1.15rem;
+  margin-top: 1.25rem; padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono); font-size: .72rem;
+  text-transform: uppercase; letter-spacing: .085em;
+}
+.nav a { color: var(--ink-3); border-bottom: none; }
+.nav a:hover { color: var(--ink); }
+
+/* ---------- sections ---------- */
+
+.section {
+  display: grid;
+  grid-template-columns: var(--gutter) 1fr;
+  gap: 0 var(--gap);
+  padding-top: 2.6rem;
+  border-top: 1px solid var(--rule);
+  margin-top: 2.6rem;
+}
+
+.section > h2 {
+  grid-column: 1;
+  margin: .18rem 0 0;
+  font-family: var(--mono);
+  font-size: .7rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .11em;
+  color: var(--ink-3); text-align: right; line-height: 1.5;
+}
+
+.body { grid-column: 2; min-width: 0; }
+.body > p { margin: 0 0 1.05em; max-width: 68ch; color: var(--ink-2); }
+.body > p:last-child { margin-bottom: 0; }
+.body > p strong { color: var(--ink); font-weight: 500; }
+
+.interests {
+  font-family: var(--serif);
+  font-size: 1.06rem; font-style: italic;
+  color: var(--ink) !important; line-height: 1.5;
+}
+
+/* ---------- entries ---------- */
+
+.list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.5rem; }
+.list.compact { gap: 1.05rem; }
+.list > li { max-width: none; }
+
+.t { display: block; font-weight: 500; color: var(--ink); line-height: 1.42; margin-bottom: .12rem; }
+.t a { color: var(--ink); border-bottom-color: var(--rule); }
+.t a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+.a { display: block; color: var(--ink-2); font-size: .93em; }
+
+.v { display: block; font-size: .93em; color: var(--ink-2); margin-top: .06rem; }
+.v em { font-family: var(--serif); font-style: italic; font-size: 1.06em; color: var(--ink); }
+.v .cite {
+  font-family: var(--mono); font-size: .84em; color: var(--ink-3);
+  letter-spacing: -.01em; font-variant-numeric: tabular-nums;
+}
+.v .code {
+  font-family: var(--mono); font-size: .8em;
+  margin-left: .5rem; white-space: nowrap;
+}
+
+.note {
+  margin-top: .5rem; padding-left: .85rem;
+  border-left: 2px solid var(--rule);
+  font-size: .85em; line-height: 1.5; color: var(--ink-3);
+}
+.note span { display: block; }
+
+.status {
+  display: inline-block; margin-top: .38rem;
+  padding: .12rem .5rem .1rem;
+  background: var(--accent-bg); color: var(--accent);
+  border-radius: 2px;
+  font-family: var(--mono); font-size: .715rem;
+  white-space: nowrap;
+}
+
+.subhead {
+  font-family: var(--mono);
+  font-size: .7rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .11em;
+  color: var(--ink-3);
+  margin: 1.9rem 0 .75rem;
+}
+.subhead:first-child { margin-top: 0; }
+
+/* ---------- footer ---------- */
+
+.foot {
+  display: grid;
+  grid-template-columns: var(--gutter) 1fr;
+  gap: 0 var(--gap);
+  margin-top: 3.5rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono); font-size: .72rem;
+  color: var(--ink-3); line-height: 1.7;
+}
+.foot > div { grid-column: 2; }
+.foot .upd { margin: 0; }
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 46rem) {
+  .masthead, .section, .foot { grid-template-columns: 1fr; gap: 0; }
+  .section > h2 { text-align: left; margin-bottom: 1rem; }
+  .body, .foot > div { grid-column: 1; }
+  .portrait { width: 6.5rem; margin-bottom: 1.5rem; }
+  .masthead h1 { margin-top: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+@media print {
+  :root { --bg: #fff; --ink: #000; --ink-2: #333; --ink-3: #555; --rule: #ccc; --accent: #000; }
+  .nav, .theme-toggle { display: none; }
+  .page { max-width: none; padding: 0; }
+  a { border-bottom: none; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Antoine Désir",
+  "url": "https://antoinedesir.com/",
+  "image": "https://antoinedesir.com/headshot.jpg",
+  "jobTitle": "Associate Professor of Technology and Operations Management",
+  "affiliation": { "@type": "Organization", "name": "INSEAD", "url": "https://www.insead.edu" },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Columbia University" },
+    { "@type": "CollegeOrUniversity", "name": "École Polytechnique" }
+  ],
+  "sameAs": [ "https://scholar.google.com/citations?user=-F0H_9sAAAAJ" ],
+  "knowsAbout": [
+    "Choice modeling", "Revenue management", "Pricing", "Online advertising",
+    "Machine learning for operations", "Approximation algorithms"
+  ]
+}
+</script>
+</head>
+<body>
+<!-- BEGIN CONTENT -->
+<script>
+(function () {
+  try {
+    var s = localStorage.getItem("theme");
+    if (s === "dark" || s === "light") document.documentElement.setAttribute("data-theme", s);
+  } catch (e) {}
+})();
+</script>
+
+<main class="page">
+
+  <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch colour theme">
+    <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+    </svg>
+    <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4.2"/>
+      <path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/>
+    </svg>
+  </button>
+
+  <header class="masthead">
+    <img class="portrait" src="headshot.jpg" alt="Antoine Désir" onerror="this.remove()">
+    <div>
+      <h1>Antoine Désir</h1>
+      <p class="role">
+        <span class="chair">The INSEAD Alumni Professorship in AI</span>
+        <img class="logo" src="INSEAD.png" alt="" aria-hidden="true">Associate Professor of Technology
+        and Operations Management, <a href="https://www.insead.edu">INSEAD</a>
+      </p>
+      <nav class="links" aria-label="Contact and profiles">
+        <a href="mailto:antoine.desir@insead.edu">antoine.desir@insead.edu</a>
+        <a href="cv/cv.pdf">CV (PDF)</a>
+        <a href="https://scholar.google.com/citations?user=-F0H_9sAAAAJ">Google Scholar</a>
+      </nav>
+      <nav class="nav" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#publications">Publications</a>
+        <a href="#working">Working papers</a>
+        <a href="#proceedings">Proceedings</a>
+        <a href="#others">Others</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="section" id="about">
+    <h2>About</h2>
+    <div class="body">
+      <p>I study how people choose, and how firms should design assortments, prices, and advertising systems around those choices. My work combines choice modeling, optimization, and machine learning, and is motivated by problems in retail, online platforms, and digital advertising.</p>
+      <p>I am an Associate Editor at <strong>Operations Research</strong> (Markets, Platforms and Revenue Management), <strong>Management Science</strong> (Operations Management), and <strong>Manufacturing &amp; Service Operations Management</strong>, and I serve on the board of the INFORMS Revenue Management and Pricing Section.</p>
+      <p>Before joining INSEAD in 2018, I was a postdoctoral research scientist at Google in New York. I hold a PhD in Operations Research from Columbia University and a Diplôme d'ingénieur from École Polytechnique.</p>
+      <p class="interests">Choice modeling · Revenue management and pricing · Online advertising · Machine learning for operations · Approximation algorithms</p>
+    </div>
+  </section>
+
+  <!-- ================= PUBLICATIONS ================= -->
+  <section class="section" id="publications">
+    <h2>Journal publications</h2>
+    <div class="body">
+      <ul class="list">
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.1287/mnsc.2023.02189">Representing random utility choice models with neural networks</a></span>
+          <span class="a">Ali Aouad, Antoine Désir</span>
+          <span class="v"><em>Management Science</em>, 2026 &nbsp;<span class="cite">72(8):6686–6701</span></span>
+          <p class="note"><span>Second place, INFORMS JFIG paper competition, 2022</span></p>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.21105/joss.06899">Choice-Learn: Large-scale choice modeling for operational contexts through the lens of machine learning</a></span>
+          <span class="a">Vincent Auriau, Ali Aouad, Antoine Désir, Emmanuel Malherbe</span>
+          <span class="v"><em>Journal of Open Source Software</em>, 2024 &nbsp;<span class="cite">9(101):6899</span><a class="code" href="https://github.com/artefactory/choice-learn">Code</a></span>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.1287/msom.2021.0611">Fixed point label attribution for real-time bidding</a></span>
+          <span class="a">Martin Bompaire, Antoine Désir, Benjamin Heymann</span>
+          <span class="v"><em>Manufacturing &amp; Service Operations Management</em>, 2024 &nbsp;<span class="cite">26(3):1043–1061</span></span>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.1287/mnsc.2023.4939">Price delegation with learning agents</a></span>
+          <span class="a">Atalay Atasu, Florin Ciocan, Antoine Désir</span>
+          <span class="v"><em>Management Science</em>, 2024 &nbsp;<span class="cite">70(8):5540–5556</span></span>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.1287/opre.2022.2420">Robust assortment optimization under the Markov chain choice model</a></span>
+          <span class="a">Antoine Désir, Vineet Goyal, Bo Jiang, Tian Xie, Jiawei Zhang</span>
+          <span class="v"><em>Operations Research</em>, 2024 &nbsp;<span class="cite">72(4):1595–1614</span></span>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.1287/mnsc.2022.4603">Incentive-compatible assortment optimization for sponsored products</a></span>
+          <span class="a">Santiago Balseiro, Antoine Désir</span>
+          <span class="v"><em>Management Science</em>, 2023 &nbsp;<span class="cite">69(8):4668–4684</span></span>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.1287/mnsc.2022.4542">Best of both worlds ad contracts: Guaranteed allocation and price with programmatic efficiency</a></span>
+          <span class="a">Maxime Cohen, Antoine Désir, Nitish Korula, Balasubramanian Sivan</span>
+          <span class="v"><em>Management Science</em>, 2023 &nbsp;<span class="cite">69(7):4027–4050</span></span>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.1287/mnsc.2021.4263">Shapley meets uniform: An axiomatic framework for attribution in online advertising</a></span>
+          <span class="a">Raghav Singal, Omar Besbes, Antoine Désir, Vineet Goyal, Garud Iyengar</span>
+          <span class="v"><em>Management Science</em>, 2022 &nbsp;<span class="cite">68(10):7457–7479</span></span>
+          <p class="note"><span>Second place, INFORMS Revenue Management and Pricing student paper competition (student: Raghav Singal), 2019</span></p>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.1287/opre.2021.2142">Capacitated assortment optimization: Hardness and approximation</a></span>
+          <span class="a">Antoine Désir, Vineet Goyal, Jiawei Zhang</span>
+          <span class="v"><em>Operations Research</em>, 2022 &nbsp;<span class="cite">70(2):893–904</span></span>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.1287/opre.2020.2085">Mallows-smoothed distribution over rankings approach for modeling choice</a></span>
+          <span class="a">Antoine Désir, Vineet Goyal, Srikanth Jagabathula, Danny Segev</span>
+          <span class="v"><em>Operations Research</em>, 2021 &nbsp;<span class="cite">69(4):1206–1227</span></span>
+          <p class="note"><span>Finalist, MSOM student paper competition, 2017</span></p>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.1287/mnsc.2018.3230">Constrained assortment optimization under the Markov chain choice model</a></span>
+          <span class="a">Antoine Désir, Vineet Goyal, Danny Segev, Chun Ye</span>
+          <span class="v"><em>Management Science</em>, 2020 &nbsp;<span class="cite">66(2):698–721</span></span>
+          <p class="note"><span>Finalist, George Nicholson student paper competition, 2015</span></p>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.1287/opre.2016.1482">Sparse process flexibility designs: Is the long chain really optimal?</a></span>
+          <span class="a">Antoine Désir, Vineet Goyal, Yehua Wei, Jiawei Zhang</span>
+          <span class="v"><em>Operations Research</em>, 2016 &nbsp;<span class="cite">64(2):416–431</span></span>
+          <p class="note">
+            <span>Finalist, George Nicholson student paper competition, 2014</span>
+            <span>Finalist, MSOM student paper competition, 2014</span>
+          </p>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= WORKING PAPERS ================= -->
+  <section class="section" id="working">
+    <h2>Working papers</h2>
+    <div class="body">
+      <ul class="list">
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.2139/ssrn.4503491">Pay transparency in heterogeneous teams: Could some fairness concerns hurt productivity?</a></span>
+          <span class="a">Lin Chen, Antoine Désir, Guillaume Roels</span>
+          <span class="status">Minor revision · Production &amp; Operations Management</span>
+          <p class="note">
+            <span>Finalist, DEI best student paper competition (student: Lin Chen), 2024</span>
+            <span>Selected for MSOM SIG TIE, 2023</span>
+          </p>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.2139/ssrn.7245803">The impact of multi-selection in ride-hailing platforms</a></span>
+          <span class="a">Antoine Désir, Molin Liu</span>
+          <span class="status">Under review · Manufacturing &amp; Service Operations Management</span>
+        </li>
+
+        <li>
+          <span class="t">Direct versus delegated funding in humanitarian operations: A donor perspective</span>
+          <span class="a">Burcu Urlu, Atalay Atasu, Antoine Désir, Luk Van Wassenhove</span>
+          <span class="status">In progress</span>
+        </li>
+
+        <li>
+          <span class="t">Efficient methods for assortment optimization using neural networks</span>
+          <span class="a">Antoine Désir, Axel Parmentier</span>
+          <span class="status">In progress</span>
+        </li>
+
+        <li>
+          <span class="t">Decision-focused learning for dynamic pricing and inventory control of substitutable products</span>
+          <span class="a">Y. Su, Antoine Désir, Axel Parmentier</span>
+          <span class="status">In progress</span>
+        </li>
+
+        <li>
+          <span class="t">Learning multi-choice models with combinatorial layers</span>
+          <span class="a">A. Amahihamedani, Vincent Auriau, Ali Aouad, Antoine Désir</span>
+          <span class="status">In progress</span>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= PROCEEDINGS ================= -->
+  <section class="section" id="proceedings">
+    <h2>Refereed proceedings</h2>
+    <div class="body">
+      <ul class="list compact">
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.1145/3308558.3313731">Shapley meets uniform: An axiomatic framework for attribution in online advertising</a></span>
+          <span class="a">Raghav Singal, Omar Besbes, Antoine Désir, Vineet Goyal, Garud Iyengar</span>
+          <span class="v"><em>ACM World Wide Web Conference (WWW)</em>, 2019 &nbsp;<span class="cite">1713–1723</span></span>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://proceedings.neurips.cc/paper/2016/hash/466accbac9a66b805ba50e42ad715740-Abstract.html">Assortment optimization under the Mallows model</a></span>
+          <span class="a">Antoine Désir, Vineet Goyal, Srikanth Jagabathula, Danny Segev</span>
+          <span class="v"><em>Neural Information Processing Systems (NeurIPS)</em>, 2016</span>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.1145/2940716.2940780">Assortment optimization under a random swap based distribution over permutations model</a></span>
+          <span class="a">Antoine Désir, Vineet Goyal, Danny Segev</span>
+          <span class="v"><em>ACM Conference on Economics and Computation (EC)</em>, 2016 &nbsp;<span class="cite">341–342</span></span>
+        </li>
+
+        <li>
+          <span class="t"><a href="https://doi.org/10.23919/ECC.2013.6669485">Games of network disruption and idempotent algorithms</a></span>
+          <span class="a">Antoine Désir, William McEneaney</span>
+          <span class="v"><em>European Control Conference (ECC)</em>, 2013 &nbsp;<span class="cite">702–709</span></span>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= WRITING ================= -->
+  <section class="section" id="others">
+    <h2>Others</h2>
+    <div class="body">
+      <ul class="list compact">
+        <li>
+          <span class="t"><a href="https://knowledge.insead.edu/operations/making-sense-attribution-online-advertising">Making sense of attribution in online advertising</a></span>
+          <span class="v">INSEAD Knowledge, July 2022</span>
+        </li>
+        <li>
+          <span class="t"><a href="https://knowledge.insead.edu/operations/boosting-vaccine-production-needs-right-degree-flexibility">Boosting vaccine production needs the right degree of flexibility</a></span>
+          <span class="a">with Prashant Yadav</span>
+          <span class="v">INSEAD Knowledge, November 2021</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div>
+      <div class="upd">Updated August 2026</div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById("theme-toggle");
+  if (!btn) return;
+
+  function current() {
+    var set = root.getAttribute("data-theme");
+    if (set === "dark" || set === "light") return set;
+    return "light";
+  }
+  function label() {
+    btn.setAttribute("aria-label",
+      current() === "dark" ? "Switch to light theme" : "Switch to dark theme");
+  }
+
+  btn.addEventListener("click", function () {
+    var next = current() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    label();
+  });
+
+  label();
+})();
+</script>
+<!-- END CONTENT -->
+</body>
+</html>

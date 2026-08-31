@@ -1,0 +1,7 @@
+# Publish only the compiled CV — never the LaTeX sources.
+# cv.tex contains commented-out teaching evaluations and referee contact details.
+cv/*
+!cv/cv.pdf
+
+# macOS
+.DS_Store
